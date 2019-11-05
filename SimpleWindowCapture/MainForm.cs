@@ -9,20 +9,19 @@ namespace SimpleWindowCapture
 {
     public partial class MainForm : Form
     {
-        private string _captureId;
-        private CaptureHelper _captureHelper;
         private readonly SynchronizationContext _syncContext;
+        private CaptureHelper _captureHelper;
 
         public MainForm()
         {
             InitializeComponent();
 
-            _captureId = Guid.NewGuid().ToString();
             _syncContext = SynchronizationContext.Current;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            MinimumSize = new Size(600, 400);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             comboBox_Type.Items.Add("DibSection");
             comboBox_Type.Items.Add("PrintWindow");
@@ -47,7 +46,7 @@ namespace SimpleWindowCapture
             var captureType = comboBox_Type.SelectedIndex == 0
                 ? CaptureType.CreateDibSection
                 : CaptureType.PrintWindow;
-            _captureHelper.Start(_captureId, handle, captureType);
+            _captureHelper.Start(Guid.NewGuid().ToString(), handle, captureType);
         }
 
         private void OnCaptureDone(string captureName, IntPtr bitmapPtr, Win32Types.BitmapInfo bitmapInfo)
@@ -65,39 +64,41 @@ namespace SimpleWindowCapture
 
         private void buttonHandle_Click(object sender, EventArgs e)
         {
-            if (_captureHelper != null)
-            {
-                RemoveCapture();
-                return;
-            }
-
-            var handle = 0;
-            if (int.TryParse(textBox_Handle.Text, out handle))
-            {
-                AddCapture(new IntPtr(handle));
-            }
-            else
+            int handle;
+            if (!int.TryParse(textBox_Handle.Text, out handle))
             {
                 MessageBox.Show("输入句柄不合法");
-            }
-        }
-
-        private void button_title_Click(object sender, EventArgs e)
-        {
-            if (_captureHelper != null)
-            {
-                RemoveCapture();
                 return;
             }
 
+            AddCapture(new IntPtr(handle));
+            EnableStart(false);
+        }
+
+        private void buttonTitle_Click(object sender, EventArgs e)
+        {
             var hWnd = Win32Funcs.FindWindowWrapper(null, textBox_Title.Text);
-            if (hWnd.Equals(IntPtr.Zero))
+            if (string.IsNullOrEmpty(textBox_Title.Text) || hWnd.Equals(IntPtr.Zero))
             {
                 MessageBox.Show("无效的窗口标题");
                 return;
             }
 
             AddCapture(hWnd);
+            EnableStart(false);
+        }
+
+        private void buttonStop_Click(object sender, EventArgs e)
+        {
+            RemoveCapture();
+            EnableStart(true);
+        }
+
+        private void EnableStart(bool enable)
+        {
+            buttonHandle.Enabled = enable;
+            buttonTitle.Enabled = enable;
+            buttonStop.Enabled = !enable;
         }
     }
 }
