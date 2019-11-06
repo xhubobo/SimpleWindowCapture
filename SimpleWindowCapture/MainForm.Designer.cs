@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.panel_tools = new System.Windows.Forms.Panel();
-            this.comboBox_Type = new System.Windows.Forms.ComboBox();
+            this.buttonStop = new System.Windows.Forms.Button();
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.buttonTitle = new System.Windows.Forms.Button();
             this.textBox_Title = new System.Windows.Forms.TextBox();
             this.buttonHandle = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_Handle = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.buttonStop = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxPicture = new System.Windows.Forms.ComboBox();
             this.panel_tools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -47,12 +49,14 @@
             // 
             this.panel_tools.BackColor = System.Drawing.Color.White;
             this.panel_tools.Controls.Add(this.buttonStop);
-            this.panel_tools.Controls.Add(this.comboBox_Type);
+            this.panel_tools.Controls.Add(this.comboBoxPicture);
+            this.panel_tools.Controls.Add(this.comboBoxType);
             this.panel_tools.Controls.Add(this.buttonTitle);
             this.panel_tools.Controls.Add(this.textBox_Title);
             this.panel_tools.Controls.Add(this.buttonHandle);
             this.panel_tools.Controls.Add(this.label2);
             this.panel_tools.Controls.Add(this.textBox_Handle);
+            this.panel_tools.Controls.Add(this.label4);
             this.panel_tools.Controls.Add(this.label3);
             this.panel_tools.Controls.Add(this.label1);
             this.panel_tools.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -61,14 +65,24 @@
             this.panel_tools.Size = new System.Drawing.Size(584, 80);
             this.panel_tools.TabIndex = 0;
             // 
-            // comboBox_Type
+            // buttonStop
             // 
-            this.comboBox_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Type.FormattingEnabled = true;
-            this.comboBox_Type.Location = new System.Drawing.Point(436, 14);
-            this.comboBox_Type.Name = "comboBox_Type";
-            this.comboBox_Type.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_Type.TabIndex = 3;
+            this.buttonStop.Location = new System.Drawing.Point(256, 13);
+            this.buttonStop.Name = "buttonStop";
+            this.buttonStop.Size = new System.Drawing.Size(75, 52);
+            this.buttonStop.TabIndex = 4;
+            this.buttonStop.Text = "Stop";
+            this.buttonStop.UseVisualStyleBackColor = true;
+            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            // 
+            // comboBoxType
+            // 
+            this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Location = new System.Drawing.Point(436, 14);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(121, 20);
+            this.comboBoxType.TabIndex = 3;
             // 
             // buttonTitle
             // 
@@ -113,6 +127,15 @@
             this.textBox_Handle.Size = new System.Drawing.Size(100, 21);
             this.textBox_Handle.TabIndex = 1;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(354, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Capture Mode";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -132,24 +155,24 @@
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             // 
-            // buttonStop
+            // label4
             // 
-            this.buttonStop.Location = new System.Drawing.Point(256, 13);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(75, 52);
-            this.buttonStop.TabIndex = 4;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(354, 47);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Picture Mode";
             // 
-            // label3
+            // comboBoxPicture
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 12);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Capture Mode";
+            this.comboBoxPicture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPicture.FormattingEnabled = true;
+            this.comboBoxPicture.Location = new System.Drawing.Point(436, 43);
+            this.comboBoxPicture.Name = "comboBoxPicture";
+            this.comboBoxPicture.Size = new System.Drawing.Size(121, 20);
+            this.comboBoxPicture.TabIndex = 3;
+            this.comboBoxPicture.SelectedIndexChanged += new System.EventHandler(this.comboBoxPicture_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -180,9 +203,11 @@
         private System.Windows.Forms.Button buttonTitle;
         private System.Windows.Forms.TextBox textBox_Title;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox_Type;
+        private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxPicture;
+        private System.Windows.Forms.Label label4;
     }
 }
 

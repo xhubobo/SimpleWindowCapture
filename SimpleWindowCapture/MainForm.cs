@@ -23,9 +23,15 @@ namespace SimpleWindowCapture
         {
             MinimumSize = new Size(600, 400);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            comboBox_Type.Items.Add("DibSection");
-            comboBox_Type.Items.Add("PrintWindow");
-            comboBox_Type.SelectedIndex = 0;
+            buttonStop.Enabled = false;
+
+            comboBoxType.Items.Add("DibSection");
+            comboBoxType.Items.Add("PrintWindow");
+            comboBoxType.SelectedIndex = 0;
+
+            comboBoxPicture.Items.Add("Zoom");
+            comboBoxPicture.Items.Add("StretchImage");
+            comboBoxPicture.SelectedIndex = 0;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -43,7 +49,7 @@ namespace SimpleWindowCapture
         {
             _captureHelper = new CaptureHelper();
             _captureHelper.CaptureDone += OnCaptureDone;
-            var captureType = comboBox_Type.SelectedIndex == 0
+            var captureType = comboBoxType.SelectedIndex == 0
                 ? CaptureType.CreateDibSection
                 : CaptureType.PrintWindow;
             _captureHelper.Start(Guid.NewGuid().ToString(), handle, captureType);
@@ -99,6 +105,20 @@ namespace SimpleWindowCapture
             buttonHandle.Enabled = enable;
             buttonTitle.Enabled = enable;
             buttonStop.Enabled = !enable;
+        }
+
+        private void comboBoxPicture_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var curSel = comboBoxPicture.SelectedIndex;
+            switch (curSel)
+            {
+                case 0:
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    break;
+                case 1:
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    break;
+            }
         }
     }
 }
