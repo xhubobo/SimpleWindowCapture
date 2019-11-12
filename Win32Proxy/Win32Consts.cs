@@ -310,5 +310,8 @@ namespace Win32Proxy
         public const int WH_CALLWNDPROCRET = 12;
         public const int WH_KEYBOARD_LL = 13;
         public const int WH_MOUSE_LL = 14;
+
+        public const uint WM_COPYDATA = 0x004A;
+        public const uint WM_CANCELJOURNAL = 0x004B;
     }
 }

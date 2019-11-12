@@ -128,6 +128,15 @@ namespace Win32Proxy
         private static extern int SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, ref Win32Types.CopyDataStruct cds);
+
+        [DllImport("user32.dll")]
+        private static extern int PostMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        private static extern int PostMessage(IntPtr hWnd, uint msg, IntPtr wParam, ref Win32Types.CopyDataStruct cds);
+
+        [DllImport("user32.dll")]
         private static extern int SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags);
 
         [DllImport("Ws2_32.dll")]
@@ -352,6 +361,21 @@ namespace Win32Proxy
         public static int SendMessageWrapper(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam)
         {
             return SendMessage(hWnd, msg, wParam, lParam);
+        }
+
+        public static int SendMessageWrapper(IntPtr hWnd, uint msg, IntPtr wParam, ref Win32Types.CopyDataStruct cds)
+        {
+            return SendMessage(hWnd, msg, wParam, ref cds);
+        }
+
+        public static int PostMessageWrapper(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam)
+        {
+            return PostMessage(hWnd, msg, wParam, lParam);
+        }
+
+        public static int PostMessageWrapper(IntPtr hWnd, uint msg, IntPtr wParam, ref Win32Types.CopyDataStruct cds)
+        {
+            return PostMessage(hWnd, msg, wParam, ref cds);
         }
 
         public static int SetLayeredWindowAttributesWrapper(IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags)

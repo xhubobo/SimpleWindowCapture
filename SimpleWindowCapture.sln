@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWindowCapture", "SimpleWindowCapture\SimpleWindowCapture.csproj", "{394D61A5-8EED-4B8B-8E5D-E0773D392AB3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18565FC7-CE3B-4FF6-912C-1F24888A4788} = {18565FC7-CE3B-4FF6-912C-1F24888A4788}
+		{308ACAF8-060B-4D24-B69A-13ED8B4D53AB} = {308ACAF8-060B-4D24-B69A-13ED8B4D53AB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureProxy", "CaptureProxy\CaptureProxy.csproj", "{308ACAF8-060B-4D24-B69A-13ED8B4D53AB}"
 EndProject

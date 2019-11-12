@@ -146,6 +146,14 @@ namespace Win32Proxy
             public byte AlphaFormat;
         }
 
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct CopyDataStruct
+        {
+            public uint dwData;
+            public uint cbData;
+            public IntPtr lpData;
+        }
+
         public delegate bool EnumWindowProc(IntPtr hwnd, IntPtr lParam);
         public delegate IntPtr WndProc(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
         public delegate int HookProc(int nCode, IntPtr wParam, IntPtr lParam);
