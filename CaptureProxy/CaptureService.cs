@@ -127,7 +127,7 @@ namespace CaptureProxy
         public bool GetWindowRect(string name, out Win32Types.Rect winRect)
         {
             var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
-            winRect = ret ? _dicCaptureHelper[name].GetWindowRect() : new Win32Types.Rect();
+            winRect = ret ? _dicCaptureHelper[name].WindowRect : new Win32Types.Rect();
             return ret;
         }
 
@@ -140,7 +140,7 @@ namespace CaptureProxy
         public bool GetClientRect(string name, out Win32Types.Rect clientRect)
         {
             var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
-            clientRect = ret ? _dicCaptureHelper[name].GetClientRect() : new Win32Types.Rect();
+            clientRect = ret ? _dicCaptureHelper[name].ClientRect : new Win32Types.Rect();
             return ret;
         }
 
@@ -153,7 +153,7 @@ namespace CaptureProxy
         public bool GetBitmapDataSize(string name, out int bmpDataSize)
         {
             var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
-            bmpDataSize = ret ? _dicCaptureHelper[name].GetBitmapDataSize() : 0;
+            bmpDataSize = ret ? _dicCaptureHelper[name].BitmapDataSize : 0;
             return ret;
         }
 
@@ -188,7 +188,7 @@ namespace CaptureProxy
         public bool GetCapture(string name, out IntPtr bitsPtr)
         {
             var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
-            bitsPtr = ret ? _dicCaptureHelper[name].GetCapture() : IntPtr.Zero;
+            bitsPtr = ret ? _dicCaptureHelper[name].Capture() : IntPtr.Zero;
             return ret && !bitsPtr.Equals(IntPtr.Zero);
         }
 
@@ -199,7 +199,7 @@ namespace CaptureProxy
                 return IntPtr.Zero;
             }
 
-            return _dicCaptureHelper[name].GetBitmapPtr();
+            return _dicCaptureHelper[name].BitmapPtr;
         }
 
         public Win32Types.BitmapInfo GetBitmapInfo(string name)
@@ -209,7 +209,7 @@ namespace CaptureProxy
                 return new Win32Types.BitmapInfo();
             }
 
-            return _dicCaptureHelper[name].GetBitmapInfo();
+            return _dicCaptureHelper[name].BitmapInfo;
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace CaptureProxy
                 return false;
             }
 
-            return _dicCaptureHelper[name].GetCapture(out bitsPtr, out bufferSize, out texSize);
+            return _dicCaptureHelper[name].Capture(out bitsPtr, out bufferSize, out texSize);
         }
 
         /// <summary>

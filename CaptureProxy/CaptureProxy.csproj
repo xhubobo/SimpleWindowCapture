@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbsCaptureHelper.cs" />
+    <Compile Include="BitmapHelper.cs" />
     <Compile Include="CaptureService.cs" />
     <Compile Include="CaptureType.cs" />
     <Compile Include="DibCaptureHelper.cs" />

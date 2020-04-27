@@ -9,14 +9,15 @@ namespace CaptureProxy
         bool Init(IntPtr handle);
         void Cleanup();
         bool RefreshWindow();
-        Win32Types.Rect GetWindowRect();
-        Win32Types.Rect GetClientRect();
-        int GetBitmapDataSize();
         bool ChangeWindowHandle(string windowName);
         bool ChangeWindowHandle(IntPtr handle);
-        IntPtr GetCapture();
-        IntPtr GetBitmapPtr();
-        Win32Types.BitmapInfo GetBitmapInfo();
-        bool GetCapture(out IntPtr bitsPtr, out int bufferSize, out Win32Types.Rect rect);
+        IntPtr Capture();
+        bool Capture(out IntPtr bitsPtr, out int bufferSize, out Win32Types.Rect rect);
+
+        Win32Types.Rect WindowRect { get; }
+        Win32Types.Rect ClientRect { get; }
+        int BitmapDataSize { get; }
+        IntPtr BitmapPtr { get; }
+        Win32Types.BitmapInfo BitmapInfo { get; }
     }
 }
