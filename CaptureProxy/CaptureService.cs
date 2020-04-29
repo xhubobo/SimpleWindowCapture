@@ -107,6 +107,19 @@ namespace CaptureProxy
             _dicCaptureHelper.Remove(name);
         }
 
+        /// <summary>
+        /// 清理所有抓图服务
+        /// </summary>
+        public void Cleanup()
+        {
+            foreach (var helper in _dicCaptureHelper)
+            {
+                helper.Value?.Cleanup();
+            }
+
+            _dicCaptureHelper.Clear();
+        }
+
         public bool RefreshWindow(string name)
         {
             var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
@@ -116,6 +129,28 @@ namespace CaptureProxy
             }
 
             return ret;
+        }
+
+        /// <summary>
+        /// 修改窗口句柄
+        /// </summary>
+        /// <param name="name">抓图服务名称</param>
+        /// <param name="handle">窗口句柄</param>
+        public bool ChangeWindowHandle(string name, IntPtr handle)
+        {
+            return !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name) &&
+                   _dicCaptureHelper[name].ChangeWindowHandle(handle);
+        }
+
+        /// <summary>
+        /// 修改窗口句柄
+        /// </summary>
+        /// <param name="name">抓图服务名称</param>
+        /// <param name="windowName">窗口名称</param>
+        public bool ChangeWindowHandle(string name, string windowName)
+        {
+            return !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name) &&
+                   _dicCaptureHelper[name].ChangeWindowHandle(windowName);
         }
 
         /// <summary>
@@ -157,41 +192,6 @@ namespace CaptureProxy
             return ret;
         }
 
-        /// <summary>
-        /// 修改窗口句柄
-        /// </summary>
-        /// <param name="name">抓图服务名称</param>
-        /// <param name="windowName">窗口名称</param>
-        public bool ChangeWindowHandle(string name, string windowName)
-        {
-            return !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name) &&
-                   _dicCaptureHelper[name].ChangeWindowHandle(windowName);
-        }
-
-        /// <summary>
-        /// 修改窗口句柄
-        /// </summary>
-        /// <param name="name">抓图服务名称</param>
-        /// <param name="handle">窗口句柄</param>
-        public bool ChangeWindowHandle(string name, IntPtr handle)
-        {
-            return !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name) &&
-                   _dicCaptureHelper[name].ChangeWindowHandle(handle);
-        }
-
-        /// <summary>
-        /// 获取抓图
-        /// </summary>
-        /// <param name="name">抓图服务名称</param>
-        /// <param name="bitsPtr">位图指针</param>
-        /// <returns>true成功,false失败</returns>
-        public bool GetCapture(string name, out IntPtr bitsPtr)
-        {
-            var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
-            bitsPtr = ret ? _dicCaptureHelper[name].Capture() : IntPtr.Zero;
-            return ret && !bitsPtr.Equals(IntPtr.Zero);
-        }
-
         public IntPtr GetBitmapPtr(string name)
         {
             if (string.IsNullOrEmpty(name) || !_dicCaptureHelper.ContainsKey(name))
@@ -217,10 +217,23 @@ namespace CaptureProxy
         /// </summary>
         /// <param name="name">抓图服务名称</param>
         /// <param name="bitsPtr">位图指针</param>
+        /// <returns>true成功,false失败</returns>
+        public bool Capture(string name, out IntPtr bitsPtr)
+        {
+            var ret = !string.IsNullOrEmpty(name) && _dicCaptureHelper.ContainsKey(name);
+            bitsPtr = ret ? _dicCaptureHelper[name].Capture() : IntPtr.Zero;
+            return ret && !bitsPtr.Equals(IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// 获取抓图
+        /// </summary>
+        /// <param name="name">抓图服务名称</param>
+        /// <param name="bitsPtr">位图指针</param>
         /// <param name="bufferSize">位图数据大小</param>
         /// <param name="texSize">位图尺寸</param>
         /// <returns>true成功,false失败</returns>
-        public bool GetCapture(string name, out IntPtr bitsPtr, out int bufferSize, out Win32Types.Rect texSize)
+        public bool Capture(string name, out IntPtr bitsPtr, out int bufferSize, out Win32Types.Rect texSize)
         {
             if (string.IsNullOrEmpty(name) || !_dicCaptureHelper.ContainsKey(name))
             {
@@ -231,19 +244,6 @@ namespace CaptureProxy
             }
 
             return _dicCaptureHelper[name].Capture(out bitsPtr, out bufferSize, out texSize);
-        }
-
-        /// <summary>
-        /// 清理所有抓图服务
-        /// </summary>
-        public void Cleanup()
-        {
-            foreach (var helper in _dicCaptureHelper)
-            {
-                helper.Value?.Cleanup();
-            }
-
-            _dicCaptureHelper.Clear();
         }
 
         #region 单例模式

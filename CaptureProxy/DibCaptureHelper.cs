@@ -52,6 +52,8 @@ namespace CaptureProxy
                 HScrDc, 0, 0,
                 (uint) Win32Consts.RasterOperationMode.SRCCOPY);
 
+            SaveFile();
+
             return ret;
         }
 

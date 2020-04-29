@@ -53,7 +53,7 @@ namespace SimpleWindowCapture
         private void Capture()
         {
             IntPtr bitsPtr;
-            if (!CaptureService.Instance.GetCapture(_captureName, out bitsPtr))
+            if (!CaptureService.Instance.Capture(_captureName, out bitsPtr))
             {
                 return;
             }
