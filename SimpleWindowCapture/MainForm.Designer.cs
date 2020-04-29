@@ -30,17 +30,18 @@
         {
             this.panel_tools = new System.Windows.Forms.Panel();
             this.buttonStop = new System.Windows.Forms.Button();
+            this.comboBoxPicture = new System.Windows.Forms.ComboBox();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.buttonTitle = new System.Windows.Forms.Button();
             this.textBox_Title = new System.Windows.Forms.TextBox();
             this.buttonHandle = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_Handle = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxPicture = new System.Windows.Forms.ComboBox();
+            this.checkBoxTopMost = new System.Windows.Forms.CheckBox();
             this.panel_tools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,7 @@
             // panel_tools
             // 
             this.panel_tools.BackColor = System.Drawing.Color.White;
+            this.panel_tools.Controls.Add(this.checkBoxTopMost);
             this.panel_tools.Controls.Add(this.buttonStop);
             this.panel_tools.Controls.Add(this.comboBoxPicture);
             this.panel_tools.Controls.Add(this.comboBoxType);
@@ -60,33 +62,43 @@
             this.panel_tools.Controls.Add(this.label3);
             this.panel_tools.Controls.Add(this.label1);
             this.panel_tools.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_tools.Location = new System.Drawing.Point(0, 281);
+            this.panel_tools.Location = new System.Drawing.Point(0, 345);
             this.panel_tools.Name = "panel_tools";
-            this.panel_tools.Size = new System.Drawing.Size(584, 80);
+            this.panel_tools.Size = new System.Drawing.Size(544, 106);
             this.panel_tools.TabIndex = 0;
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(256, 13);
+            this.buttonStop.Location = new System.Drawing.Point(440, 40);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(75, 52);
+            this.buttonStop.Size = new System.Drawing.Size(78, 56);
             this.buttonStop.TabIndex = 4;
             this.buttonStop.Text = "Stop";
             this.buttonStop.UseVisualStyleBackColor = true;
             this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
             // 
+            // comboBoxPicture
+            // 
+            this.comboBoxPicture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPicture.FormattingEnabled = true;
+            this.comboBoxPicture.Location = new System.Drawing.Point(397, 10);
+            this.comboBoxPicture.Name = "comboBoxPicture";
+            this.comboBoxPicture.Size = new System.Drawing.Size(121, 20);
+            this.comboBoxPicture.TabIndex = 3;
+            this.comboBoxPicture.SelectedIndexChanged += new System.EventHandler(this.comboBoxPicture_SelectedIndexChanged);
+            // 
             // comboBoxType
             // 
             this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(436, 14);
+            this.comboBoxType.Location = new System.Drawing.Point(176, 10);
             this.comboBoxType.Name = "comboBoxType";
             this.comboBoxType.Size = new System.Drawing.Size(121, 20);
             this.comboBoxType.TabIndex = 3;
             // 
             // buttonTitle
             // 
-            this.buttonTitle.Location = new System.Drawing.Point(171, 42);
+            this.buttonTitle.Location = new System.Drawing.Point(355, 40);
             this.buttonTitle.Name = "buttonTitle";
             this.buttonTitle.Size = new System.Drawing.Size(75, 23);
             this.buttonTitle.TabIndex = 2;
@@ -96,14 +108,14 @@
             // 
             // textBox_Title
             // 
-            this.textBox_Title.Location = new System.Drawing.Point(66, 43);
+            this.textBox_Title.Location = new System.Drawing.Point(65, 42);
             this.textBox_Title.Name = "textBox_Title";
-            this.textBox_Title.Size = new System.Drawing.Size(100, 21);
+            this.textBox_Title.Size = new System.Drawing.Size(280, 21);
             this.textBox_Title.TabIndex = 1;
             // 
             // buttonHandle
             // 
-            this.buttonHandle.Location = new System.Drawing.Point(171, 13);
+            this.buttonHandle.Location = new System.Drawing.Point(355, 73);
             this.buttonHandle.Name = "buttonHandle";
             this.buttonHandle.Size = new System.Drawing.Size(75, 23);
             this.buttonHandle.TabIndex = 2;
@@ -114,7 +126,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 47);
+            this.label2.Location = new System.Drawing.Point(18, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 0;
@@ -122,15 +134,24 @@
             // 
             // textBox_Handle
             // 
-            this.textBox_Handle.Location = new System.Drawing.Point(66, 14);
+            this.textBox_Handle.Location = new System.Drawing.Point(65, 74);
             this.textBox_Handle.Name = "textBox_Handle";
-            this.textBox_Handle.Size = new System.Drawing.Size(100, 21);
+            this.textBox_Handle.Size = new System.Drawing.Size(280, 21);
             this.textBox_Handle.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(317, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Picture Mode";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 18);
+            this.label3.Location = new System.Drawing.Point(96, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 0;
@@ -139,7 +160,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 18);
+            this.label1.Location = new System.Drawing.Point(18, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 0;
@@ -151,34 +172,26 @@
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(584, 281);
+            this.pictureBox.Size = new System.Drawing.Size(544, 345);
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             // 
-            // label4
+            // checkBoxTopMost
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(354, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 12);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Picture Mode";
-            // 
-            // comboBoxPicture
-            // 
-            this.comboBoxPicture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPicture.FormattingEnabled = true;
-            this.comboBoxPicture.Location = new System.Drawing.Point(436, 43);
-            this.comboBoxPicture.Name = "comboBoxPicture";
-            this.comboBoxPicture.Size = new System.Drawing.Size(121, 20);
-            this.comboBoxPicture.TabIndex = 3;
-            this.comboBoxPicture.SelectedIndexChanged += new System.EventHandler(this.comboBoxPicture_SelectedIndexChanged);
+            this.checkBoxTopMost.AutoSize = true;
+            this.checkBoxTopMost.Location = new System.Drawing.Point(20, 12);
+            this.checkBoxTopMost.Name = "checkBoxTopMost";
+            this.checkBoxTopMost.Size = new System.Drawing.Size(66, 16);
+            this.checkBoxTopMost.TabIndex = 5;
+            this.checkBoxTopMost.Text = "TopMost";
+            this.checkBoxTopMost.UseVisualStyleBackColor = true;
+            this.checkBoxTopMost.Click += new System.EventHandler(this.checkBoxTopMost_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(544, 451);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.panel_tools);
             this.Name = "MainForm";
@@ -208,6 +221,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxPicture;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBoxTopMost;
     }
 }
 

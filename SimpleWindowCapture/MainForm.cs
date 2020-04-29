@@ -22,7 +22,7 @@ namespace SimpleWindowCapture
         private void MainForm_Load(object sender, EventArgs e)
         {
             TopMost = true;
-            MinimumSize = new Size(600, 400);
+            MinimumSize = new Size(Width, Height);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             buttonStop.Enabled = false;
 
@@ -33,6 +33,8 @@ namespace SimpleWindowCapture
             comboBoxPicture.Items.Add("Zoom");
             comboBoxPicture.Items.Add("StretchImage");
             comboBoxPicture.SelectedIndex = 0;
+
+            checkBoxTopMost.Checked = TopMost;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -67,6 +69,11 @@ namespace SimpleWindowCapture
             var image = pictureBox.Image;
             pictureBox.Image = (Bitmap)state;
             image?.Dispose();
+        }
+
+        private void checkBoxTopMost_Click(object sender, EventArgs e)
+        {
+            TopMost = checkBoxTopMost.Checked;
         }
 
         private void buttonHandle_Click(object sender, EventArgs e)
