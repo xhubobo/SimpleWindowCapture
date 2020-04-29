@@ -160,7 +160,9 @@ namespace Win32Proxy
 
         public const long WS_CHILDWINDOW = (WS_CHILD);
 
-        public const int WS_EX_LAYERED = 0x00080000;
+        public const long WS_EX_TOPMOST = 0x00000008L; //窗口置顶(停留在所有非最高层窗口的上面)
+        public const int WS_EX_LAYERED = 0x00080000; //分层或透明窗口,该样式可使用混合特效
+        public const long WS_EX_NOACTIVATE = 0x08000000L; //处于顶层但不激活
 
         //窗口Z序标识（如果uFlags参数中设置了SWP_NOZORDER标记则本参数将被忽略）
         public const int HWND_TOP = 0;

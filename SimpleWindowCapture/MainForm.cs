@@ -21,6 +21,7 @@ namespace SimpleWindowCapture
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            TopMost = true;
             MinimumSize = new Size(600, 400);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             buttonStop.Enabled = false;
@@ -71,9 +72,13 @@ namespace SimpleWindowCapture
         private void buttonHandle_Click(object sender, EventArgs e)
         {
             int handle;
-            if (!int.TryParse(textBox_Handle.Text, out handle))
+            try
             {
-                MessageBox.Show("输入句柄不合法");
+                handle = int.Parse(textBox_Handle.Text.Trim());
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
                 return;
             }
 
@@ -83,7 +88,7 @@ namespace SimpleWindowCapture
 
         private void buttonTitle_Click(object sender, EventArgs e)
         {
-            var hWnd = Win32Funcs.FindWindowWrapper(null, textBox_Title.Text);
+            var hWnd = Win32Funcs.FindWindowWrapper(null, textBox_Title.Text.Trim());
             if (string.IsNullOrEmpty(textBox_Title.Text) || hWnd.Equals(IntPtr.Zero))
             {
                 MessageBox.Show("无效的窗口标题");
