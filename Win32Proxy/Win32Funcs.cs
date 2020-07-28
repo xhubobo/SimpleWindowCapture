@@ -43,6 +43,9 @@ namespace Win32Proxy
         [DllImport("User32.dll", SetLastError = true)]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
+        [DllImport("User32.dll", SetLastError = true)]
+        private static extern IntPtr GetDesktopWindow();
+
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass,
             string lpszWindow);
@@ -229,6 +232,11 @@ namespace Win32Proxy
         public static IntPtr FindWindowWrapper(string lpClassName, string lpWindowName)
         {
             return FindWindow(lpClassName, lpWindowName);
+        }
+        
+        public static IntPtr GetDesktopWindowWrapper()
+        {
+            return GetDesktopWindow();
         }
 
         public static IntPtr FindWindowExWrapper(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass,
