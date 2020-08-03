@@ -60,8 +60,15 @@ namespace SimpleWindowCapture
 
         private void OnCaptureDone(string captureName, IntPtr bitmapPtr, Win32Types.BitmapInfo bitmapInfo)
         {
-            var image = Image.FromHbitmap(bitmapPtr);
-            _syncContext.Post(OnCaptureDone1SafePost, image);
+            try
+            {
+                var image = Image.FromHbitmap(bitmapPtr);
+                _syncContext.Post(OnCaptureDone1SafePost, image);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void OnCaptureDone1SafePost(object state)
